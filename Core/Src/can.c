@@ -117,7 +117,13 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 } 
 
 /* USER CODE BEGIN 1 */
+void hal_can_send(void){
+	//todo: handle this
+}
 
+void hal_can_receive(void){
+	//todo: handle this
+}
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
