@@ -1,16 +1,16 @@
 # USER Interface board
-## overview
-stm32 based board, designed to receive and transmit ADC data from [JL_2000](https://www.farnell.com/datasheets/30691.pdf) joystick.
+## Overview
+stm32 based board, designed to receive, process and transmit further data from [JL_2000](https://www.farnell.com/datasheets/30691.pdf) joystick. Board will be used in electric bolid, adjusted for disabled people.
 
-## specifics
+## Specifics
 Application is desired to aquire data from wheelchair joystic an transmit it further via CAN.
 Application written In C using HAL library. Working enviromant is Atolic TrueStudio for STM32 v.9.3.0 
 download links:
-[atolic studio](https://atollic.com/truestudio/)
+[Atolic Studio](https://atollic.com/truestudio/)
 [MxCube](https://www.st.com/en/development-tools/stm32cubemx.html)
 
-## code organization
-### folders
+## Code organization
+### Folders
 code is organized in following way:
 * .metadata - eclpise files
 * .settings - eclipse files
@@ -21,7 +21,7 @@ code is organized in following way:
 * Application - application logic files
 * Drivers - CMSIS and board specific HAL drivers
 
-### files
+### Files
 * main.* - main program source and header file
 * .project - keeps eclipse workspace data
 * STM32F103RC_FLASH.ld - stm32 linker script 
