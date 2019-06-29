@@ -139,6 +139,12 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
   /* USER CODE END USART1_MspDeInit 1 */
   }
 } 
+void hal_usart_send(void){
+	//todo: handle this
+}
+void hal_usart_receive(void){
+	//todo: handle this
+}
 
 /* USER CODE BEGIN 1 */
 

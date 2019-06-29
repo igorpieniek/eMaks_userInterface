@@ -26,6 +26,11 @@
 
 ADC_HandleTypeDef hadc1;
 DMA_HandleTypeDef hdma_adc1;
+uint32_t adc_raw_data[NUMBER_OF_CHANNELS];
+
+uint32_t* get_adc_raw_data(void){
+	return adc_raw_data;
+}
 
 /* ADC1 init function */
 void MX_ADC1_Init(void)
@@ -127,7 +132,8 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     __HAL_LINKDMA(adcHandle,DMA_Handle,hdma_adc1);
 
   /* USER CODE BEGIN ADC1_MspInit 1 */
-
+    HAL_ADC_Start(&hadc1);
+    HAL_ADC_Start_DMA(&hadc1,adc_raw_data,NUMBER_OF_CHANNELS);
   /* USER CODE END ADC1_MspInit 1 */
   }
 }
