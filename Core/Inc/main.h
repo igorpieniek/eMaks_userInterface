@@ -28,6 +28,7 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
+#include <stdbool.h>
 #include "stm32f1xx_hal.h"
 #include "adc.h"
 #include "spi.h"
@@ -54,7 +55,7 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-
+void hal_init(void);
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/

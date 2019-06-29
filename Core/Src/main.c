@@ -41,15 +41,14 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-#define NUMBER_OF_CHANNELS 4
-uint32_t adc_raw_values[NUMBER_OF_CHANNELS];
+
 /* USER CODE END 0 */
 
 /**
   * @brief  The application entry point.
   * @retval int
   */
-int main(void)
+void hal_init(void)
 {
   /* USER CODE BEGIN 1 */
 
@@ -80,18 +79,10 @@ int main(void)
   MX_TIM3_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_ADC_Start_DMA(&hadc1,adc_raw_values,NUMBER_OF_CHANNELS);
+  // todo Lukas : start others peripherals*/
   /* USER CODE END 2 */
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    /* USER CODE END WHILE */
 
-    /* USER CODE BEGIN 3 */
-  }
-  /* USER CODE END 3 */
 }
 
 /**

@@ -25,7 +25,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#define NUMBER_OF_CHANNELS 4
+#define NUMBER_OF_CHANNELS     4
+#define ADC_BIT_RESOLUTION	   12
+#define ADC_REFERENCE_VOLTAGE  3.3
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
