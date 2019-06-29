@@ -17,7 +17,7 @@ Additionally, if you want to see live variables, downlad [stmstudio](https://www
 * .settings - eclipse files
 * Core - files created by MXCube
 * Adc - logic level adc data handling
-* Debug - debug data, .elf files are stored her.
+* Debug - debug data, .elf files are stored here.
 * Drivers - CMSIS and board specific HAL drivers
 * Startup - stm32 boot file
 * Test - unit tests made in ceedling framework
