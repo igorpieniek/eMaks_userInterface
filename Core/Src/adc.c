@@ -29,7 +29,7 @@ DMA_HandleTypeDef hdma_adc1;
 uint32_t adc_raw_values[NUMBER_OF_CHANNELS];
 
 
-uint32_t* get_adc_raw_data(void){
+uint32_t* get_hal_adc_raw_data(void){
 	return &adc_raw_values;
 }
 

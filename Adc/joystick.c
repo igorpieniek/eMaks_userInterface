@@ -14,16 +14,20 @@ joystick* get_joy_value(void){
 	return &joy;
 }
 
-void get_adc_data(float* raw_data){
-	uint32_t* raw = get_adc_raw_data();
+void get_adc_data(joystick* joy,uint32_t* data){
 	for(uint8_t i = 0 ; i < NUMBER_OF_AXIS; i++){
-		joy.measurements[i].raw_data = raw[i];
+		joy->measurements[i].raw_data = data[i];
 	}
 }
 
-void convert_adc_value(joystick* joy){
+void convert_adc_value(joystick* joy, uint32_t* raw_adc_data){
+	get_adc_data(joy,raw_adc_data);
 	uint32_t divider = pow(2, joy->bit_resolution);
 	for(uint8_t i = 0 ; i < NUMBER_OF_AXIS;i++){
+		if(joy->measurements[i].raw_data == NULL){
+			joy->measurements[i].converted_data = -1.0;
+			continue;
+		}
 		joy->measurements[i].converted_data =
 				((float)joy->measurements[i].raw_data
 				* joy->reference_voltage)/(float)divider;
@@ -31,11 +35,20 @@ void convert_adc_value(joystick* joy){
 }
 
 void calculate_percentages_voltage(joystick* joy){
-
 	for(uint8_t i = 0 ; i < NUMBER_OF_AXIS; i++){
+		if(joy->measurements[i].converted_data > joy->reference_voltage){
+			joy->measurements[i].percentage_value = 100.0;
+			continue;
+		}
 		joy->measurements[i].percentage_value =
-				joy->measurements[i].converted_data * joy->reference_voltage *
+				joy->measurements[i].converted_data / joy->reference_voltage *
 				100.0;
 	}
 }
 
+void calculate_joy_data(void){
+
+	joystick* joy = get_joy_value();
+	convert_adc_value(joy,get_hal_adc_raw_data());
+	calculate_percentages_voltage(joy);
+}

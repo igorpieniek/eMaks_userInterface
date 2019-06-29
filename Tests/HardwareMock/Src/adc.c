@@ -6,3 +6,5 @@
  */
 
 #include "adc.h"
+
+uint32_t* get_hal_adc_raw_data(void){}

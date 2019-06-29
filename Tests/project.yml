@@ -33,6 +33,7 @@
     - src/**
     - ../Adc
     - HardwareMock/Inc
+    - HardwareMock/Src
   :support:
     - test/support
 
