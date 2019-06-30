@@ -8,8 +8,10 @@
 #ifndef HARDWAREMOCK_ADC_H_
 #define HARDWAREMOCK_ADC_H_
 
-#define uint8_t  unsigned short
-#define uint32_t unsigned long
+#define uint8_t  unsigned char
+#define uint32_t unsigned short
+#define uint16_t unsigned  int
+#define uint64_t unsigned long
 
 #define ADC_BIT_RESOLUTION	   12
 #define ADC_REFERENCE_VOLTAGE  3.3

@@ -10,7 +10,7 @@
 		 .reference_voltage = ADC_REFERENCE_VOLTAGE
  };
 
-joystick* get_joy_value(void){
+joystick* get_joy_pointer(void){
 	return &joy;
 }
 
@@ -23,6 +23,7 @@ void get_adc_data(joystick* joy,uint32_t* data){
 void convert_adc_value(joystick* joy, uint32_t* raw_adc_data){
 	get_adc_data(joy,raw_adc_data);
 	uint32_t divider = pow(2, joy->bit_resolution);
+	//todo Lukas: add offset
 	for(uint8_t i = 0 ; i < NUMBER_OF_AXIS;i++){
 		if(joy->measurements[i].raw_data == NULL){
 			joy->measurements[i].converted_data = -1.0;
@@ -48,7 +49,7 @@ void calculate_percentages_voltage(joystick* joy){
 
 void calculate_joy_data(void){
 
-	joystick* joy = get_joy_value();
+	joystick* joy = get_joy_pointer();
 	convert_adc_value(joy,get_hal_adc_raw_data());
 	calculate_percentages_voltage(joy);
 }
