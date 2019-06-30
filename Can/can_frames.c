@@ -16,8 +16,6 @@ can_message can_messages[]={
 		{.frame_id = JOY_DATA_FRAME_ID, .data_lenght = JOY_ADC_READINGS_LENGHT}
 };
 
-
-
 void fill_joy_data_frame(can_message* message, joystick* joy, uint8_t axis_number){
 
 	float axis_data =joy->measurements[axis_number].percentage_value;
@@ -27,6 +25,7 @@ void fill_joy_data_frame(can_message* message, joystick* joy, uint8_t axis_numbe
 	uint16_t axis_code;
 	(axis_number == X_AXIS_INDEX)?
 			(axis_code = CAN_X_AXIS_CODE):(axis_code = CAN_Y_AXIS_CODE);
+
 
 	uint8_t data_to_encode[]={
 			(uint8_t)(axis_code >> 8),

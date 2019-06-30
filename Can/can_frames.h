@@ -26,7 +26,7 @@
 #define CAN_ERROR_FRAME_INDEX 1
 
 typedef struct{
-	void (*can_transmit)(uint16, uint64);
+	void (*can_transmit)(uint16_t, uint64_t);
 	uint8_t hardware_functions_attached;
 }can_functions;
 
@@ -40,5 +40,6 @@ typedef struct{
 
 void fill_joy_data_frame(can_message* message, joystick* joy, uint8_t axis_number);
 void can_transmit_data(void);
+uint8_t is_hardware_attached_to_pointers(void);
 
 #endif /* CAN_CAN_FRAMES_H_ */
