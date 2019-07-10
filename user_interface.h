@@ -5,6 +5,5 @@
  *      Author: Lukas
  */
 
-/* todo Lukas: rename hal generated "main" */
-#include"main.h"
+#include "hal_init.h"
 

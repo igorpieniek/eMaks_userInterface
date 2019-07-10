@@ -19,12 +19,13 @@
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __adc_H
 #define __adc_H
+
 #ifdef __cplusplus
  extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+#include "hal_init.h"
 #define NUMBER_OF_CHANNELS     4
 #define ADC_BIT_RESOLUTION	   12
 #define ADC_REFERENCE_VOLTAGE  3.3

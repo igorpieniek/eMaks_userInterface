@@ -25,7 +25,7 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+#include "hal_init.h"
 
 /* DMA memory to memory transfer handles -------------------------------------*/
 

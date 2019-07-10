@@ -19,12 +19,13 @@
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __spi_H
 #define __spi_H
+
 #ifdef __cplusplus
  extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+#include "hal_init.h"
 
 /* USER CODE BEGIN Includes */
 

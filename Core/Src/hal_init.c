@@ -4,7 +4,7 @@
  *  Created on: 20.06.2019
  *      Author: Lukas
  */
-#include "main.h"
+#include <hal_init.h>
 
 
 /* Private includes ----------------------------------------------------------*/
