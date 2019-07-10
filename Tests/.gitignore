@@ -1,5 +1,10 @@
+# Directories
 /build
+/.settings
+# Files
 .cproject
 .project
 *.Ink
 *.stackdump
+*.code_review_properties
+*.Ink
