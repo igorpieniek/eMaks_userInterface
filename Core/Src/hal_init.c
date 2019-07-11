@@ -78,6 +78,8 @@ void hal_init(void)
   MX_SPI1_Init();
   MX_TIM3_Init();
   MX_USART1_UART_Init();
+
+
   /* USER CODE BEGIN 2 */
   // todo Lukas : start others peripherals*/
   /* USER CODE END 2 */

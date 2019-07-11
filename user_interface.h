@@ -6,4 +6,5 @@
  */
 
 #include "hal_init.h"
-
+#include "joystick.h"
+#include "can.h"

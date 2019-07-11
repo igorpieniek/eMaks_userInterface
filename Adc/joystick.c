@@ -15,7 +15,7 @@ joystick* get_joy_pointer(void){
 }
 
 void get_adc_data(joystick* joy,uint32_t* data){
-	for(uint8_t i = 0 ; i < NUMBER_OF_AXIS; i++){
+	for(uint8_t i = 0 ; i < NUMBER_OF_CHANNELS; i++){
 		joy->measurements[i].raw_data = data[i];
 	}
 }
@@ -24,7 +24,7 @@ void convert_adc_value(joystick* joy, uint32_t* raw_adc_data){
 	get_adc_data(joy,raw_adc_data);
 	uint32_t divider = pow(2, joy->bit_resolution);
 	//todo Lukas: add offset
-	for(uint8_t i = 0 ; i < NUMBER_OF_AXIS;i++){
+	for(uint8_t i = 0 ; i < NUMBER_OF_CHANNELS;i++){
 		if(joy->measurements[i].raw_data == NULL){
 			joy->measurements[i].converted_data = -1.0;
 			continue;
@@ -32,21 +32,24 @@ void convert_adc_value(joystick* joy, uint32_t* raw_adc_data){
 		joy->measurements[i].converted_data =
 				((float)joy->measurements[i].raw_data
 				* joy->reference_voltage)/(float)divider;
+
 	}
 }
 
 void calculate_percentages_voltage(joystick* joy){
-	for(uint8_t i = 0 ; i < NUMBER_OF_AXIS; i++){
+	for(uint8_t i = 0 ; i < NUMBER_OF_CHANNELS; i++){
 		if(joy->measurements[i].converted_data > joy->reference_voltage){
 			joy->measurements[i].percentage_value = 100.0;
 			continue;
 		}
 		joy->measurements[i].percentage_value =
-				joy->measurements[i].converted_data / joy->reference_voltage *
-				100.0;
+				(joy->measurements[i].converted_data - JOYSTICK_OFFSET)/
+				(PERCENTAGE_DENOMINATOR);
+
+		joy->measurements[i].percentage_value *= 100.0;
 	}
 }
-
+// todo Lukas : update tests
 void calculate_joy_data(void){
 
 	joystick* joy = get_joy_pointer();

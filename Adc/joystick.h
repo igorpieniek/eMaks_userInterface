@@ -5,13 +5,18 @@
  *      Author: Lukas
  */
 
+//todo Lukas : calibrate joystick better
 #ifndef ADC_JOYSTICK_H_
 #define ADC_JOYSTICK_H_
 #include <math.h>
 #include "adc.h"
-#define NUMBER_OF_AXIS 2
-#define X_AXIS_INDEX   0
+#define X_AXIS_INDEX   2
 #define Y_AXIS_INDEX   1
+#define JOYSTICK_OFFSET  1.75f //Volts
+#define MAX_JOY_VOLTAGE  2.30f
+#define PERCENTAGE_DENOMINATOR 	MAX_JOY_VOLTAGE - JOYSTICK_OFFSET
+#define PERCENTAGE_OFFSET 50.0f
+
 typedef struct{
 	uint32_t raw_data;
 	float converted_data;
@@ -19,7 +24,7 @@ typedef struct{
 }adc_data;
 
 typedef struct{
-	adc_data measurements[NUMBER_OF_AXIS];
+	adc_data measurements[NUMBER_OF_CHANNELS];
 	uint8_t bit_resolution;
 	float reference_voltage;
 }joystick;

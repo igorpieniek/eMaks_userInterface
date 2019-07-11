@@ -61,6 +61,7 @@ void MX_TIM3_Init(void)
     Error_Handler();
   }
 
+  HAL_TIM_Base_Start(&htim3);
 }
 
 void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
