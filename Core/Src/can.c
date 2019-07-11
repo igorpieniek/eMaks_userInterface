@@ -26,12 +26,13 @@
 
 CAN_HandleTypeDef hcan;
 
+
 /* CAN init function */
 void MX_CAN_Init(void)
 {
 
   hcan.Instance = CAN1;
-  hcan.Init.Prescaler = 16;
+  hcan.Init.Prescaler = 21;
   hcan.Init.Mode = CAN_MODE_NORMAL;
   hcan.Init.SyncJumpWidth = CAN_SJW_1TQ;
   hcan.Init.TimeSeg1 = CAN_BS1_1TQ;
@@ -46,7 +47,7 @@ void MX_CAN_Init(void)
   {
     Error_Handler();
   }
-
+  HAL_CAN_Start(&hcan);
 }
 
 void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
@@ -117,14 +118,17 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 } 
 
 /* USER CODE BEGIN 1 */
-void hal_can_send(void){
+void hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data){
+	hal_can_message  hal_message;
+	hal_message.data = data;
+	hal_message.header.DLC = dlc;
+	hal_message.header.RTR = CAN_RTR_DATA;
+	hal_message.header.IDE  = CAN_ID_STD;
+	hal_message.header.StdId = frame_id;
 
-	//todo: handle this
+	HAL_CAN_AddTxMessage(&hcan, &hal_message.header,hal_message.data,&hal_message.mailbox);
 }
 
-void hal_can_receive(void){
-	//todo: handle this
-}
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

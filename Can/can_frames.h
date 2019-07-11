@@ -9,7 +9,7 @@
 #define CAN_CAN_FRAMES_H_
 #include "coder.h"
 #include "joystick.h"
-
+#include "can.h"
 
 /* see can protocol for details ,can_commons repo in the same organization */
 #define JOY_ERROR_FRAME_ID 0xE0
@@ -24,19 +24,17 @@
 //todo Lukas: make it more generic
 #define CAN_JOY_FRAME_INDEX   0
 #define CAN_ERROR_FRAME_INDEX 1
+typedef struct{
+	uint8_t* data;
+	uint8_t dlc;
+	uint16_t frame_id;
+}can_message;
+
 
 typedef struct{
-	void (*can_transmit)(uint16_t, uint64_t);
+	void (*can_transmit)(uint16_t, uint8_t, uint8_t*);
 	uint8_t hardware_functions_attached;
 }can_functions;
-
-
-typedef struct{
-	uint16_t frame_id;
-	uint64_t data;
-	uint8_t data_lenght;
-
-}can_message;
 
 void fill_joy_data_frame(can_message* message, joystick* joy, uint8_t axis_number);
 void can_transmit_data(void);

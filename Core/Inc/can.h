@@ -28,6 +28,12 @@
 #include "hal_init.h"
 
 /* USER CODE BEGIN Includes */
+typedef struct{
+	CAN_TxHeaderTypeDef     header;
+	uint32_t 				mailbox;
+	uint8_t*				data;
+}hal_can_message;
+
 
 /* USER CODE END Includes */
 
@@ -38,7 +44,7 @@ extern CAN_HandleTypeDef hcan;
 /* USER CODE END Private defines */
 
 void MX_CAN_Init(void);
-
+void hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data);
 /* USER CODE BEGIN Prototypes */
 
 /* USER CODE END Prototypes */

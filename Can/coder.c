@@ -17,10 +17,10 @@ uint16_t encode_float_to_uint16(float value, coding_parameter param){
 }
 
 
-uint64_t encode_frame_big_endian(uint8_t* data , uint8_t data_length){
-	uint64_t encoded_data= 0;
+uint8_t* encode_frame_big_endian(uint8_t* data , uint8_t data_length){
+	static uint8_t encoded_data[8]; // max size of frame
 	for( uint8_t i = 1 ; i <= data_length  ;i++){
-		encoded_data = (encoded_data << 8) + data[data_length-i];
+		encoded_data[i] = data[data_length-i];
 	}
 	return encoded_data;
 }

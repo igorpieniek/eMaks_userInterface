@@ -19,6 +19,6 @@ typedef struct{
 }coding_parameter;
 
 uint16_t encode_float_to_uint16(float value, coding_parameter param);
-uint64_t encode_frame_big_endian(uint8_t* data , uint8_t data_length);
+uint8_t* encode_frame_big_endian(uint8_t* data , uint8_t data_length);
 
 #endif /* CAN_CODER_H_ */

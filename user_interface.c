@@ -12,6 +12,7 @@ int main(void){
 	while(1){
 		if(htim3.Instance->CNT ==500){
 			calculate_joy_data();
+			can_transmit_data();
 		}
 
 
