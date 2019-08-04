@@ -22,12 +22,11 @@ void fill_joy_data_frame(can_message* message, joystick* joy, uint8_t axis_numbe
 
 	float axis_data =joy->measurements[axis_number].percentage_value;
 
-	uint16_t encoded_axis_data = encode_float_to_uint16(axis_data,int16_5_5);
+	uint16_t encoded_axis_data = encode_float_to_uint16(axis_data,uint16_5_5);
 
 	uint16_t axis_code;
 	(axis_number == X_AXIS_INDEX)?
 			(axis_code = CAN_X_AXIS_CODE):(axis_code = CAN_Y_AXIS_CODE);
-
 
 	uint8_t data_to_encode[]={
 			(uint8_t)(axis_code >> 8),
@@ -35,13 +34,13 @@ void fill_joy_data_frame(can_message* message, joystick* joy, uint8_t axis_numbe
 			(uint8_t)(encoded_axis_data >> 8 ),
 			(uint8_t)encoded_axis_data
 	};
-	message->data  = encode_frame_big_endian(data_to_encode,message->dlc);
+	message->data =  encode_frame_big_endian(data_to_encode,message->dlc);
 }
 void fill_error_frame(void){
 	//todo Lukas: implement this later
 }
 uint8_t is_hardware_attached_to_pointers(void){
-	return ( hardware_can.can_transmit ==NULL)? 0 : 1;
+	return ( hardware_can.can_transmit ==NULL )? 0 : 1;
 }
 
 void can_transmit_data(void){
@@ -52,9 +51,13 @@ void can_transmit_data(void){
 
  	fill_joy_data_frame(joy_frame,get_joy_pointer(),X_AXIS_INDEX);
  	hardware_can.can_transmit(joy_frame->frame_id,joy_frame->dlc, joy_frame->data);
+ 	free(joy_frame->data);
 
  	fill_joy_data_frame(joy_frame,get_joy_pointer(),Y_AXIS_INDEX);
  	hardware_can.can_transmit(joy_frame->frame_id,joy_frame->dlc, joy_frame->data);
+ 	free(joy_frame->data);
+
  	}
+
 
 

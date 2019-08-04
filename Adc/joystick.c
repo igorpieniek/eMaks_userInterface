@@ -35,7 +35,7 @@ void convert_adc_value(joystick* joy, uint32_t* raw_adc_data){
 
 	}
 }
-
+///todo Lukas: update tests
 void calculate_percentages_voltage(joystick* joy){
 	for(uint8_t i = 0 ; i < NUMBER_OF_CHANNELS; i++){
 		if(joy->measurements[i].converted_data > joy->reference_voltage){

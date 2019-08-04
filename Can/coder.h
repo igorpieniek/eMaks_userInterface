@@ -8,6 +8,7 @@
 #ifndef CAN_CODER_H_
 #define CAN_CODER_H_
 #include <math.h>
+#include <malloc.h>
 
 /* type defines for ceedling tests*/
 #include "adc.h"

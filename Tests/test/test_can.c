@@ -3,6 +3,7 @@
 #include "joystick.h"
 #include "coder.h"
 #include "adc.h"
+#include "can.h"
 extern can_functions hardware_can;
 
 void setUp(void)
@@ -16,16 +17,19 @@ void test_fill_joy_data_frame_valid_lenght(void){
 	// arrange
 	can_message test_msg;
 	joystick test_joy;
-	uint8_t test_axis_number = 0;
+	uint8_t test_axis_number = X_AXIS_INDEX;
 
-	test_joy.measurements[0].percentage_value = 54.9;
-	test_msg.data_lenght = 4;
+	test_joy.measurements[X_AXIS_INDEX].percentage_value = 54.9;
+	test_msg.dlc = 4;
 	// act
 	fill_joy_data_frame(&test_msg,&test_joy,test_axis_number);
 	// assert
 
 
-	TEST_ASSERT_EQUAL_UINT64(0x8B8C0000,test_msg.data);
+	TEST_ASSERT_EQUAL_HEX(0x8B,test_msg.data[0]);
+	TEST_ASSERT_EQUAL_HEX(0x8C,test_msg.data[1]);
+	TEST_ASSERT_EQUAL_HEX(0xC0,test_msg.data[2]);
+
 
 }
 void test_fill_joy_data_frame_not_valid_length(void){

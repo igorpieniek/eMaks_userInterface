@@ -13,6 +13,8 @@
 #define uint16_t unsigned  int
 #define uint64_t unsigned long
 
+
+#define NUMBER_OF_CHANNELS   4
 #define ADC_BIT_RESOLUTION	   12
 #define ADC_REFERENCE_VOLTAGE  3.3
 

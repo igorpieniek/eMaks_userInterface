@@ -6,4 +6,4 @@
  */
 #include "can.h"
 
-
+void hal_can_send(uint16_t frame, uint8_t data_lenght, uint8_t* data){}
