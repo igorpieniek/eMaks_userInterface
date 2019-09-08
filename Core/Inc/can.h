@@ -25,7 +25,7 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "hal_init.h"
+#include "main.h"
 
 /* USER CODE BEGIN Includes */
 typedef struct{
@@ -45,6 +45,7 @@ extern CAN_HandleTypeDef hcan;
 
 void MX_CAN_Init(void);
 void hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data);
+void hal_can_filter_init(void);
 /* USER CODE BEGIN Prototypes */
 
 /* USER CODE END Prototypes */

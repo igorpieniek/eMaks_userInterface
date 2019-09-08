@@ -7,7 +7,7 @@
 #ifndef USER_INTERFACE_H_
 #define USER_INTERFACE_H_
 
-#include "hal_init.h"
+#include "main.h"
 #include "joystick.h"
 #include "can_frames.h"
 

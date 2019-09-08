@@ -85,10 +85,6 @@ void MX_ADC1_Init(void)
     Error_Handler();
   }
 
-  /* start adc */
-  HAL_ADC_Start_DMA(&hadc1,adc_raw_values,NUMBER_OF_CHANNELS);
-
-
 }
 
 void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)

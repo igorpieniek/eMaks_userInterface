@@ -28,15 +28,7 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include <stdbool.h>
 #include "stm32f1xx_hal.h"
-#include "adc.h"
-#include "spi.h"
-#include "usart.h"
-#include "dma.h"
-#include "can.h"
-#include "gpio.h"
-#include "tim.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -55,14 +47,14 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-void hal_init(void);
+
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-
+void hal_init(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

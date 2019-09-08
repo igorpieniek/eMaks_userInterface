@@ -7,14 +7,14 @@
 
 
 #include "user_interface.h"
+extern TIM_HandleTypeDef htim3;
+
 int main(void){
 	hal_init();
 	while(1){
-		if(htim3.Instance->CNT ==500){
+		if(htim3.Instance->CNT ==900){
 			calculate_joy_data();
 			can_transmit_data();
 		}
-
-
 	}
 }
