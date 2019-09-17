@@ -15,7 +15,8 @@ can_functions hardware_can= {
 
 can_message can_messages[]={
 		{.frame_id = JOY_ERROR_FRAME_ID ,.dlc = JOY_ERROR_FRAME_LENGHT},
-		{.frame_id = JOY_DATA_FRAME_ID, .dlc = JOY_ADC_READINGS_LENGHT}
+		{.frame_id = JOY_DATA_X_FRAME_ID,.dlc =JOY_DATA_DLC},
+		{.frame_id = JOY_DATA_Y_FRAME_ID, .dlc = JOY_DATA_DLC}
 };
 
 void fill_joy_data_frame(can_message* message, joystick* joy, uint8_t axis_number){
@@ -47,12 +48,14 @@ void can_transmit_data(void){
 	if(!is_hardware_attached_to_pointers()){
 		return;
 	}
- 	can_message* joy_frame= &can_messages[CAN_JOY_FRAME_INDEX];
-
+	can_message* joy_frame;
+	//todo Lukas get rid of this patology
+ 	joy_frame= &can_messages[JOY_X_AXIS_FRAME];
  	fill_joy_data_frame(joy_frame,get_joy_pointer(),X_AXIS_INDEX);
  	hardware_can.can_transmit(joy_frame->frame_id,joy_frame->dlc, joy_frame->data);
  	free(joy_frame->data);
 
+ 	joy_frame= &can_messages[JOY_Y_AXIS_FRAME];
  	fill_joy_data_frame(joy_frame,get_joy_pointer(),Y_AXIS_INDEX);
  	hardware_can.can_transmit(joy_frame->frame_id,joy_frame->dlc, joy_frame->data);
  	free(joy_frame->data);
