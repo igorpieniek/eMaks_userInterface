@@ -7,8 +7,8 @@
 #include "coder.h"
 #include <malloc.h>
 
-coding_parameter uint16_5_5 ={.bits =16, .offset = 0,.range = 100};
-coding_parameter int16_5_5 = {.bits = 16, .offset = 127,.range =100};
+coding_parameter uint16_5_5 ={.bits =16, .offset = 0,.range = 5.5};
+coding_parameter int16_5_5 = {.bits = 16, .offset = 127,.range =5.5};
 
 uint16_t encode_float_to_uint16(float value, coding_parameter param){
 	if( value > param.range){

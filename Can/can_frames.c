@@ -32,6 +32,7 @@ void fill_joy_data_frame(can_message* message, joystick* joy, uint8_t axis_numbe
 	uint8_t data_to_encode[]={
 			(uint8_t)(axis_code >> 8),
 			(uint8_t)axis_code,
+			(uint8_t)(joy->measurements[axis_number].direction),
 			(uint8_t)(encoded_axis_data >> 8 ),
 			(uint8_t)encoded_axis_data
 	};
