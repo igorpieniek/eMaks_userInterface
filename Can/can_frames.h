@@ -13,8 +13,8 @@
 
 /* see can protocol for details ,can_commons repo in the same organization */
 #define JOY_ERROR_FRAME_ID   0x20E
-#define JOY_DATA_X_FRAME_ID  0xD20
-#define JOY_DATA_Y_FRAME_ID  0xD21
+#define JOY_DATA_X_FRAME_ID  0x21D
+#define JOY_DATA_Y_FRAME_ID  0x22D
 #define JOY_DATA_DLC		4
 
 #define JOY_ERROR_FRAME_LENGHT  2

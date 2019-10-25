@@ -6,7 +6,7 @@
  */
 #include "can_frames.h"
 //todo Lukas: attach hardware function for transmit
-extern coding_parameter uint16_5_5 ;
+extern coding_parameter uint16_128 ;
 extern coding_parameter int16_5_5 ;
 
 can_functions hardware_can= {
@@ -23,7 +23,7 @@ void fill_joy_data_frame(can_message* message, joystick* joy, uint8_t axis_numbe
 
 	float axis_data =joy->measurements[axis_number].percentage_value;
 
-	uint16_t encoded_axis_data = encode_float_to_uint16(axis_data,uint16_5_5);
+	uint16_t encoded_axis_data = encode_float_to_uint16(axis_data,uint16_128);
 
 	uint16_t axis_code;
 	(axis_number == X_AXIS_INDEX)?
