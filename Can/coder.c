@@ -12,7 +12,7 @@ coding_parameter int16_5_5 = {.bits = 16, .offset = 127,.range =100};
 
 uint16_t encode_float_to_uint16(float value, coding_parameter param){
 	if( value > param.range){
-		return 0;
+		return param.range;
 	}
 	return(uint16_t)((value + param.offset) * pow(2,param.bits) /param.range);
 }
