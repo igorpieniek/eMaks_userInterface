@@ -32,7 +32,13 @@ typedef struct{
 	CAN_TxHeaderTypeDef     header;
 	uint32_t 				mailbox;
 	uint8_t*				data;
-}hal_can_message;
+}hal_can_messageTx;
+
+typedef struct{
+	CAN_RxHeaderTypeDef     header;
+	uint32_t 				mailbox;
+	uint8_t*				data;
+}hal_can_messageRx;
 
 
 /* USER CODE END Includes */

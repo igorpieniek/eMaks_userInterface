@@ -17,6 +17,7 @@
 
 void modeManagerInit();
 uint8_t isJoystickMode();
+void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc);
 
 enum RC_MODE{
 	MODE_JOYSICK = 0,

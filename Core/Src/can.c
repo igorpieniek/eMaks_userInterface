@@ -21,6 +21,7 @@
 #include "can.h"
 
 /* USER CODE BEGIN 0 */
+#include "ModeManager/mode_manager.h"
 CAN_FilterTypeDef hcan_filter;
 /* USER CODE END 0 */
 
@@ -132,7 +133,7 @@ void hal_can_filter_init(void){
 
 
 void hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data){
-	hal_can_message  hal_message;
+	hal_can_messageTx  hal_message;
 	hal_message.data = data;
 	hal_message.header.DLC = dlc;
 	hal_message.header.RTR = CAN_RTR_DATA;
@@ -140,6 +141,17 @@ void hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data){
 	hal_message.header.StdId = frame_id;
 
 	HAL_CAN_AddTxMessage(&hcan, &(hal_message.header),hal_message.data,&(hal_message.mailbox));
+
+}
+
+void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan ){
+	hal_can_messageRx  hal_message;
+	HAL_CAN_GetRxMessage(hcan,CAN_RX_FIFO0,
+			&hal_message.header,
+			hal_message.data );
+
+	getData_Rx(hal_message.header.StdId, hal_message.data, hal_message.header.DLC);
+
 
 }
 

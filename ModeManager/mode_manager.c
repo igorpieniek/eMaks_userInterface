@@ -14,6 +14,12 @@ void modeManagerInit(){
 	HAL_TIM_Base_Start_IT(&PROCESS_TIMER);
 }
 
+
+void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
+
+}
+
+
 uint8_t isJoystickMode(){
 	if (driveMode == EN && RCmode == MODE_JOYSICK){
 		return 1;
