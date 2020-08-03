@@ -11,7 +11,7 @@
 void modeManagerInit(){
 	driveMode = EN;
 	RCmode = MODE_JOYSICK;
-	HAL_TIM_Base_Start_IT(&PROCESS_TIMER);
+//	HAL_TIM_Base_Start_IT(&PROCESS_TIMER);
 }
 
 
@@ -24,7 +24,6 @@ void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
 }
 
 void convertStatusData_Rx(uint8_t * data){
-
 	uint8_t status = data[STATUS_MODE_BYTE];
 	uint8_t permition = data[STATUS_PERMITION_BYTE];
 	statusUpdate(getRCmodeStatus_Rx( status ), getDriveModestatus_Rx( permition ) );
@@ -69,15 +68,15 @@ void statusUpdate(enum RC_MODE RCstatus, enum DRIVE_MODE drivestatus){
 	else stopIdleTimer();
 }
 void startIdleTimer(){
-	HAL_TIM_Base_Start_IT(&IDLE_TIMER);
+//	HAL_TIM_Base_Start_IT(&IDLE_TIMER);
 }
 
 void stopIdleTimer(){
-	HAL_TIM_Base_Stop_IT(&IDLE_TIMER);
+//	HAL_TIM_Base_Stop_IT(&IDLE_TIMER);
 	resetIdleTimer();
 }
 void resetIdleTimer(){
-	__HAL_TIM_SET_COUNTER(&IDLE_TIMER, 0);
+//	__HAL_TIM_SET_COUNTER(&IDLE_TIMER, 0);
 }
 
 uint8_t velocityPermission(enum MSG_ORIGIN origin){

@@ -13,7 +13,7 @@
 #include "can.h"
 #include "stm32f1xx_hal_tim.h"
 
-#define IDLE_TIMER htim4
+//#define IDLE_TIMER htim4
 #define PROCESS_TIMER htim3
 
 #define VELOCITY_FRAME_ID   0x23E //TODO
