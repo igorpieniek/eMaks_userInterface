@@ -10,5 +10,6 @@
 #include "main.h"
 #include "joystick.h"
 #include "can_frames.h"
+#include "ModeManager/mode_manager.h"
 
 #endif
