@@ -123,7 +123,7 @@ void hal_can_filter_init(void){
 	hcan_filter.FilterFIFOAssignment = CAN_FILTER_FIFO0;
 	hcan_filter.FilterIdHigh = 0xFFFF;
 	hcan_filter.FilterIdLow = 0x0;
-	hcan_filter.FilterIdHigh = 0x0;
+	hcan_filter.FilterIdHigh = 0x24D;
 	hcan_filter.FilterIdLow = 0x0;
 	hcan_filter.FilterScale = CAN_FILTERSCALE_32BIT;
 	hcan_filter.FilterActivation = ENABLE;
@@ -144,7 +144,7 @@ void hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data){
 
 }
 
-void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef* hcan ){
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan ){
 	hal_can_messageRx  hal_message;
 	HAL_CAN_GetRxMessage(hcan,CAN_RX_FIFO0,
 			&hal_message.header,

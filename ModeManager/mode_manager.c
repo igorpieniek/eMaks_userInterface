@@ -12,6 +12,7 @@ void modeManagerInit(){
 	driveMode = EN;
 	RCmode = MODE_JOYSICK;
 //	HAL_TIM_Base_Start_IT(&PROCESS_TIMER);
+	HAL_CAN_ActivateNotification(&hcan,CAN_IT_RX_FIFO0_MSG_PENDING);
 }
 
 
@@ -21,18 +22,22 @@ void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
 	else if ( frame_id == I3_VELOCITY_FRAME_ID )	setVelocity( data ,I3  );
 	else if ( frame_id == TURN_FRAME_ID )			setTurn( data, RC  );
 	else if ( frame_id == I3_TURN_FRAME_ID )	 	setTurn( data, I3  );
+
 }
 
 void convertStatusData_Rx(uint8_t * data){
+	HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port,BLUE_LED_Pin);
 	uint8_t status = data[STATUS_MODE_BYTE];
 	uint8_t permition = data[STATUS_PERMITION_BYTE];
 	statusUpdate(getRCmodeStatus_Rx( status ), getDriveModestatus_Rx( permition ) );
 }
 
 void setVelocity(uint8_t* vel, enum MSG_ORIGIN origin){
+	HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port,BLUE_LED_Pin);
 	if (velocityPermission(origin)) sendMsg(VELOCITY, vel);
 }
 void setTurn(uint8_t* turn, enum MSG_ORIGIN origin){
+	HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port,BLUE_LED_Pin);
 	if (turnPermission(origin)) sendMsg(TURN,turn);
 }
 
