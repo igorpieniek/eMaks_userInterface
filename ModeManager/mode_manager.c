@@ -11,14 +11,15 @@
 void modeManagerInit(){
 	driveMode = EN;
 	RCmode = MODE_JOYSICK;
-//	HAL_TIM_Base_Start_IT(&PROCESS_TIMER);
+	HAL_TIM_Base_Start_IT(&PROCESS_TIMER);
 	canMsgTx.header.RTR = CAN_RTR_DATA;
 	canMsgTx.header.IDE  = CAN_ID_STD;
 	canMsgTx.header.ExtId = 0x01;
 	canMsgTx.header.TransmitGlobalTime = DISABLE;
 	for(uint8_t i = 0; i<8; i++) canMsgTx.data[i]=0;
-
+	hal_can_filter_init();
 	HAL_CAN_ActivateNotification(&hcan,CAN_IT_RX_FIFO0_MSG_PENDING);
+	HAL_CAN_Start(&hcan);
 }
 
 
@@ -96,15 +97,15 @@ void statusUpdate(enum RC_MODE RCstatus, enum DRIVE_MODE drivestatus){
 	else stopIdleTimer();
 }
 void startIdleTimer(){
-//	HAL_TIM_Base_Start_IT(&IDLE_TIMER);
+	HAL_TIM_Base_Start_IT(&IDLE_TIMER);
 }
 
 void stopIdleTimer(){
-//	HAL_TIM_Base_Stop_IT(&IDLE_TIMER);
+	HAL_TIM_Base_Stop_IT(&IDLE_TIMER);
 	resetIdleTimer();
 }
 void resetIdleTimer(){
-//	__HAL_TIM_SET_COUNTER(&IDLE_TIMER, 0);
+	__HAL_TIM_SET_COUNTER(&IDLE_TIMER, 0);
 }
 
 uint8_t velocityPermission(enum MSG_ORIGIN origin){

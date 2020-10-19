@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
@@ -21,17 +21,16 @@
 #include "adc.h"
 
 /* USER CODE BEGIN 0 */
-
-/* USER CODE END 0 */
-
-ADC_HandleTypeDef hadc1;
-DMA_HandleTypeDef hdma_adc1;
 uint32_t adc_raw_values[NUMBER_OF_CHANNELS];
 
 
 uint32_t* get_hal_adc_raw_data(void){
 	return &adc_raw_values;
 }
+/* USER CODE END 0 */
+
+ADC_HandleTypeDef hadc1;
+DMA_HandleTypeDef hdma_adc1;
 
 /* ADC1 init function */
 void MX_ADC1_Init(void)

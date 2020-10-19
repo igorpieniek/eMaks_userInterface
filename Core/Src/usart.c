@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
@@ -139,12 +139,6 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
   /* USER CODE END USART1_MspDeInit 1 */
   }
 } 
-void hal_usart_send(void){
-	//todo: handle this
-}
-void hal_usart_receive(void){
-	//todo: handle this
-}
 
 /* USER CODE BEGIN 1 */
 

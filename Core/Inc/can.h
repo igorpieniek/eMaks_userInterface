@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
@@ -19,7 +19,6 @@
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __can_H
 #define __can_H
-
 #ifdef __cplusplus
  extern "C" {
 #endif
@@ -50,10 +49,10 @@ extern CAN_HandleTypeDef hcan;
 /* USER CODE END Private defines */
 
 void MX_CAN_Init(void);
+
+/* USER CODE BEGIN Prototypes */
 void hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data);
 void hal_can_filter_init(void);
-/* USER CODE BEGIN Prototypes */
-
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

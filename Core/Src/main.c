@@ -79,7 +79,7 @@ void hal_init(void)
   HAL_ADC_Start(&hadc1);
   HAL_ADC_Start_DMA(&hadc1,adc_raw_values,NUMBER_OF_CHANNELS);
   HAL_TIM_Base_Start(&htim3);
-  hal_can_filter_init();
+
 
 }
 /* USER CODE END 0 */

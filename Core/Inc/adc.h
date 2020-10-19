@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
@@ -19,16 +19,13 @@
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __adc_H
 #define __adc_H
-
 #ifdef __cplusplus
  extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#define NUMBER_OF_CHANNELS     4
-#define ADC_BIT_RESOLUTION	   12
-#define ADC_REFERENCE_VOLTAGE  3.3
+
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
@@ -36,7 +33,9 @@
 extern ADC_HandleTypeDef hadc1;
 
 /* USER CODE BEGIN Private defines */
-
+#define NUMBER_OF_CHANNELS     4
+#define ADC_BIT_RESOLUTION	   12
+#define ADC_REFERENCE_VOLTAGE  3.3
 /* USER CODE END Private defines */
 
 void MX_ADC1_Init(void);
