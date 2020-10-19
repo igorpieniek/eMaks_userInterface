@@ -51,7 +51,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/}&quot;" />
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Adc}&quot;" />
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Can}&quot;" />
-								<listOptionValue builtIn="false" value="../Core/Inc" /></option>
+								<listOptionValue builtIn="false" value="../Core/Inc" /><listOptionValue builtIn="false" value="../Drivers/STM32F1xx_HAL_Driver/Inc" /></option>
 								<option id="com.atollic.truestudio.gcc.symbols.defined.1670122205" name="Defined symbols" superClass="com.atollic.truestudio.gcc.symbols.defined" valueType="definedSymbols">
 									
 									
