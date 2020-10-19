@@ -23,8 +23,8 @@
 #define I3_VELOCITY_FRAME_ID    0x26D
 #define I3_TURN_FRAME_ID  		0x27D
 
-#define STATUS_MODE_BYTE      1
-#define STATUS_PERMITION_BYTE 3
+#define STATUS_MODE_BYTE      2
+#define STATUS_PERMITION_BYTE 1
 
 #define JOYSTICK_MODE_MSG 	0x00
 #define ACRO_MODE_MSG		0x01
@@ -62,6 +62,8 @@ enum SEND_MODE{
 	STATUS
 };
 
+hal_can_messageRx  canMsgRx;
+hal_can_messageTx  canMsgTx;
 void modeManagerInit();
 uint8_t isJoystickMode();
 void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc);
@@ -77,6 +79,8 @@ uint8_t turnPermission(enum MSG_ORIGIN origin);
 uint8_t velocityPermission(enum MSG_ORIGIN origin);
 
 void sendMsg(enum SEND_MODE mode, uint8_t * msgData);
+void custom_hal_can_send(uint32_t frame_id, uint32_t dlc);
+void fill_frame();
 
 void startIdleTimer();
 void stopIdleTimer();

@@ -12,6 +12,12 @@ void modeManagerInit(){
 	driveMode = EN;
 	RCmode = MODE_JOYSICK;
 //	HAL_TIM_Base_Start_IT(&PROCESS_TIMER);
+	canMsgTx.header.RTR = CAN_RTR_DATA;
+	canMsgTx.header.IDE  = CAN_ID_STD;
+	canMsgTx.header.ExtId = 0x01;
+	canMsgTx.header.TransmitGlobalTime = DISABLE;
+	for(uint8_t i = 0; i<8; i++) canMsgTx.data[i]=0;
+
 	HAL_CAN_ActivateNotification(&hcan,CAN_IT_RX_FIFO0_MSG_PENDING);
 }
 
@@ -26,27 +32,44 @@ void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
 }
 
 void convertStatusData_Rx(uint8_t * data){
-	HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port,BLUE_LED_Pin);
+	//HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port,BLUE_LED_Pin);
 	uint8_t status = data[STATUS_MODE_BYTE];
 	uint8_t permition = data[STATUS_PERMITION_BYTE];
 	statusUpdate(getRCmodeStatus_Rx( status ), getDriveModestatus_Rx( permition ) );
 }
-
-void setVelocity(uint8_t* vel, enum MSG_ORIGIN origin){
-	HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port,BLUE_LED_Pin);
-	if (velocityPermission(origin)) sendMsg(VELOCITY, vel);
-}
-void setTurn(uint8_t* turn, enum MSG_ORIGIN origin){
-	HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port,BLUE_LED_Pin);
-	if (turnPermission(origin)) sendMsg(TURN,turn);
-}
-
-void sendMsg(enum SEND_MODE mode, uint8_t * msgData){
-	if (mode == TURN && sizeof(msgData)==STEERING_FRAME_LENGTH ){
-		hal_can_send( STEERING_VELOCITY_FRAME_ID, STEERING_FRAME_LENGTH , msgData);
+void fill_frame(uint8_t* data){
+	for(uint8_t i=0; i <4; i++){
+		canMsgTx.data[i] = *(data+i);
 	}
-	else if (mode == VELOCITY && sizeof(msgData)==STEERING_FRAME_LENGTH){
-		hal_can_send( STEERING_TURN_FRAME_ID,  STEERING_FRAME_LENGTH , msgData);
+}
+void setVelocity(uint8_t* data, enum MSG_ORIGIN origin){
+	//HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port,BLUE_LED_Pin);
+	if (velocityPermission(origin)){
+		fill_frame(data);
+		sendMsg(VELOCITY, data);
+	}
+}
+void setTurn(uint8_t* data, enum MSG_ORIGIN origin){
+	//HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port,BLUE_LED_Pin);
+	if (turnPermission(origin)){
+		fill_frame(data);
+		sendMsg(TURN,data);
+	}
+}
+
+void custom_hal_can_send(uint32_t frame_id, uint32_t dlc){
+	canMsgTx.header.DLC = (uint32_t)dlc;
+	canMsgTx.header.StdId = (uint32_t)frame_id;
+	HAL_CAN_AddTxMessage(&hcan, &(canMsgTx.header),canMsgTx.data,&(canMsgTx.mailbox));
+}
+void sendMsg(enum SEND_MODE mode, uint8_t * msgData){
+	if (mode == TURN  ){
+		custom_hal_can_send(STEERING_VELOCITY_FRAME_ID,STEERING_FRAME_LENGTH );
+		//hal_can_send( STEERING_VELOCITY_FRAME_ID, STEERING_FRAME_LENGTH , msgData);
+	}
+	else if (mode == VELOCITY ){
+		custom_hal_can_send(STEERING_TURN_FRAME_ID,STEERING_FRAME_LENGTH );
+		//hal_can_send( STEERING_TURN_FRAME_ID,  STEERING_FRAME_LENGTH , msgData);
 	}
 }
 

@@ -25,9 +25,9 @@ void fill_joy_data_frame(can_message* message, joystick* joy, uint8_t axis_numbe
 
 	uint16_t encoded_axis_data = encode_float_to_uint16(axis_data,uint16_128);
 
-	uint16_t axis_code;
-	(axis_number == X_AXIS_INDEX)?
-			(axis_code = CAN_X_AXIS_CODE):(axis_code = CAN_Y_AXIS_CODE);
+//	uint16_t axis_code;
+//	(axis_number == X_AXIS_INDEX)?
+//			(axis_code = CAN_X_AXIS_CODE):(axis_code = CAN_Y_AXIS_CODE);
 
 	uint8_t data_to_encode[]={
 			(uint8_t)(joy->measurements[axis_number].sign >> 8),
