@@ -12,6 +12,7 @@
 #include "tim.h"
 #include "can.h"
 #include "stm32f1xx_hal_tim.h"
+#include <stdlib.h>
 
 #define IDLE_TIMER htim2
 #define PROCESS_TIMER htim3
@@ -85,6 +86,7 @@ void fill_frame();
 void startIdleTimer();
 void stopIdleTimer();
 void resetIdleTimer();
+void STOP_Motor(void);
 
 
 
