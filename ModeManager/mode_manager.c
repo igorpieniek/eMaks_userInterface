@@ -97,6 +97,7 @@ void statusUpdate(enum RC_MODE RCstatus, enum DRIVE_MODE drivestatus){
 	else stopIdleTimer();
 }
 void startIdleTimer(){
+	resetIdleTimer();
 	HAL_TIM_Base_Start_IT(&IDLE_TIMER);
 }
 
@@ -145,4 +146,8 @@ uint8_t isJoystickMode(){
 	else return 0;
 }
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	if(htim == &IDLE_TIMER ){
 
+	}
+}
