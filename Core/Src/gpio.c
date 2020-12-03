@@ -88,6 +88,11 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : PD0 PD1 PD2 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2;
+  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
   /*Configure GPIO pins : PAPin PAPin PAPin PAPin */
   GPIO_InitStruct.Pin = TP_CS_Pin|BL_CTRL_Pin|GPIO18_Pin|GPIO4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -114,10 +119,8 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PD2 */
-  GPIO_InitStruct.Pin = GPIO_PIN_2;
-  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+  /*Configure peripheral I/O remapping */
+  __HAL_AFIO_REMAP_PD01_ENABLE();
 
 }
 
