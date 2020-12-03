@@ -30,7 +30,7 @@
 typedef struct{
 	CAN_TxHeaderTypeDef     header;
 	uint32_t 				mailbox;
-	uint8_t*				data;
+	uint8_t				data[8];
 }hal_can_messageTx;
 
 typedef struct{
