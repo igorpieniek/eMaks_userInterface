@@ -93,8 +93,11 @@ enum DRIVE_MODE getDriveModestatus_Rx(uint8_t permition){
 
 
 void statusUpdate(enum RC_MODE RCstatus, enum DRIVE_MODE drivestatus){
-	RCmode = RCstatus;
-	driveMode = drivestatus;
+	if(RCstatus != RCmode || drivestatus != driveMode){
+		STOP_Motor();
+		RCmode = RCstatus;
+		driveMode = drivestatus;
+	}
 	if (RCstatus !=MODE_JOYSICK){
 		startIdleTimer();
 	}
