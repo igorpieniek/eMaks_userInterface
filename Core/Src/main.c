@@ -73,6 +73,7 @@ void hal_init(void)
   MX_ADC1_Init();
   MX_CAN_Init();
   MX_SPI1_Init();
+  MX_TIM2_Init();
   MX_TIM3_Init();
   MX_USART1_UART_Init();
 
