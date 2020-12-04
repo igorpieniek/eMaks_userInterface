@@ -20,6 +20,8 @@ void modeManagerInit(){
 	hal_can_filter_init();
 	HAL_CAN_ActivateNotification(&hcan,CAN_IT_RX_FIFO0_MSG_PENDING);
 	HAL_CAN_Start(&hcan);
+
+	isIdleTimerON =0;
 }
 
 void clearTxBuff(){
@@ -99,16 +101,24 @@ void statusUpdate(enum RC_MODE RCstatus, enum DRIVE_MODE drivestatus){
 	else stopIdleTimer();
 }
 void startIdleTimer(){
-	resetIdleTimer();
-	HAL_TIM_Base_Start_IT(&IDLE_TIMER);
+	if(isIdleTimerON == 0){
+		HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin);
+		HAL_TIM_Base_Start_IT(&IDLE_TIMER);
+		isIdleTimerON=1;
+	}
 }
 
 void stopIdleTimer(){
-	HAL_TIM_Base_Stop_IT(&IDLE_TIMER);
-	resetIdleTimer();
+	if(isIdleTimerON){
+		HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin);
+		HAL_TIM_Base_Stop_IT(&IDLE_TIMER);
+		resetIdleTimer();
+		RCmode = MODE_JOYSICK;
+		isIdleTimerON = 0;
+	}
 }
 void resetIdleTimer(){
-	//__HAL_TIM_SET_COUNTER(&IDLE_TIMER, 0);
+	__HAL_TIM_SET_COUNTER(&IDLE_TIMER, 0);
 }
 
 uint8_t velocityPermission(enum MSG_ORIGIN origin){

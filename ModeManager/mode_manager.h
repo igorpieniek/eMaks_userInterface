@@ -65,6 +65,8 @@ enum SEND_MODE{
 
 hal_can_messageRx  canMsgRx;
 hal_can_messageTx  canMsgTx;
+
+uint8_t isIdleTimerON;
 void modeManagerInit();
 uint8_t isJoystickMode();
 void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc);
