@@ -25,7 +25,7 @@
 #define I3_TURN_FRAME_ID  		0x27D
 
 #define STATUS_MODE_BYTE      2
-#define STATUS_PERMITION_BYTE 1
+#define STATUS_PERMITION_BYTE 0
 
 #define JOYSTICK_MODE_MSG 	0x00
 #define ACRO_MODE_MSG		0x01
@@ -73,6 +73,7 @@ enum RC_MODE getRCmodeStatus_Rx(uint8_t status);
 enum DRIVE_MODE getDriveModestatus_Rx(uint8_t permition);
 void statusUpdate(enum RC_MODE RCstatus, enum DRIVE_MODE drivestatus);
 
+void clearTxBuff();
 void setVelocity(uint8_t* vel, enum MSG_ORIGIN origin);
 void setTurn(uint8_t* turn, enum MSG_ORIGIN origin);
 

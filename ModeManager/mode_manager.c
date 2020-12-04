@@ -16,13 +16,15 @@ void modeManagerInit(){
 	canMsgTx.header.IDE  = CAN_ID_STD;
 	canMsgTx.header.ExtId = 0x01;
 	canMsgTx.header.TransmitGlobalTime = DISABLE;
-	for(uint8_t i = 0; i<8; i++) canMsgTx.data[i]=0;
+	clearTxBuff();
 	hal_can_filter_init();
 	HAL_CAN_ActivateNotification(&hcan,CAN_IT_RX_FIFO0_MSG_PENDING);
 	HAL_CAN_Start(&hcan);
 }
 
-
+void clearTxBuff(){
+	for(uint8_t i = 0; i<8; i++) canMsgTx.data[i]=0;
+}
 void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
 	if (frame_id == STATUS_FRAME_ID) convertStatusData_Rx( data); // function also update status in modemanager
 	else if ( frame_id == VELOCITY_FRAME_ID ) 		setVelocity( data , RC );
@@ -106,7 +108,7 @@ void stopIdleTimer(){
 	resetIdleTimer();
 }
 void resetIdleTimer(){
-	__HAL_TIM_SET_COUNTER(&IDLE_TIMER, 0);
+	//__HAL_TIM_SET_COUNTER(&IDLE_TIMER, 0);
 }
 
 uint8_t velocityPermission(enum MSG_ORIGIN origin){

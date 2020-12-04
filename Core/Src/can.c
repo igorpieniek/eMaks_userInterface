@@ -149,7 +149,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan ){
 			&hal_message.header,
 			hal_message.data );
 
-	getData_Rx(hal_message.header.StdId, hal_message.data, hal_message.header.DLC);
+	getData_Rx(hal_message.header.StdId, &hal_message.data, hal_message.header.DLC);
 
 
 }
