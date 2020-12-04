@@ -132,14 +132,15 @@ void hal_can_filter_init(void){
 
 
 void hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data){
-//	hal_can_messageTx  hal_message;
-//	hal_message.data = data;
-//	hal_message.header.DLC = dlc;
-//	hal_message.header.RTR = CAN_RTR_DATA;
-//	hal_message.header.IDE  = CAN_ID_STD;
-//	hal_message.header.StdId = frame_id;
-//
-//	HAL_CAN_AddTxMessage(&hcan, &(hal_message.header),hal_message.data,&(hal_message.mailbox));
+	hal_can_messageTx  hal_message;
+	for(uint8_t i=0; i <8; i++)hal_message.data[i] = *(data+i);
+
+	hal_message.header.DLC = dlc;
+	hal_message.header.RTR = CAN_RTR_DATA;
+	hal_message.header.IDE  = CAN_ID_STD;
+	hal_message.header.StdId = frame_id;
+
+	HAL_CAN_AddTxMessage(&hcan, &(hal_message.header),hal_message.data,&(hal_message.mailbox));
 
 }
 
