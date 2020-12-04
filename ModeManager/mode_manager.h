@@ -37,8 +37,8 @@
 
 // Tx
 #define STEERING_FRAME_LENGTH 4
-#define STEERING_VELOCITY_FRAME_ID  0x21D //old x axis
-#define STEERING_TURN_FRAME_ID   	0x22D // old y axis
+#define STEERING_VELOCITY_FRAME_ID  0x22D //old x axis
+#define STEERING_TURN_FRAME_ID   	0x21D // old y axis
 
 enum RC_MODE{
 	MODE_JOYSICK = 0,

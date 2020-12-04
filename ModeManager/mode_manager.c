@@ -159,7 +159,7 @@ uint8_t isJoystickMode(){
 }
 
 void STOP_Motor(void){ //send velocity = 0 to motor, change mode to joystick
-	uint8_t* data = (uint8_t*)calloc(8, sizeof(uint8_t)); // create array[8] and fill with 0
+	uint8_t* data = (uint8_t*)calloc(4, sizeof(uint8_t)); // create array[8] and fill with 0
 	fill_frame(data);
 	sendMsg(VELOCITY, data);
 	free(data);
