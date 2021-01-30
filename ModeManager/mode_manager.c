@@ -40,6 +40,7 @@ void convertStatusData_Rx(uint8_t * data){
 	//HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port,BLUE_LED_Pin);
 	uint8_t status = data[STATUS_MODE_BYTE];
 	uint8_t permition = data[STATUS_PERMITION_BYTE];
+	resetIdleTimer();
 	statusUpdate(getRCmodeStatus_Rx( status ), getDriveModestatus_Rx( permition ) );
 }
 void fill_frame(uint8_t* data){
@@ -125,7 +126,7 @@ void resetIdleTimer(){
 }
 
 uint8_t velocityPermission(enum MSG_ORIGIN origin){
-	resetIdleTimer();
+	//resetIdleTimer();
 	if (driveMode == EN){
 		if(origin == RC && (RCmode == MODE_ACRO ||
   	   	   	     	 	 	RCmode == MODE_SEMI) ){
@@ -140,7 +141,7 @@ uint8_t velocityPermission(enum MSG_ORIGIN origin){
 }
 
 uint8_t turnPermission(enum MSG_ORIGIN origin){
-	resetIdleTimer();
+	//resetIdleTimer();
 	if (driveMode == EN){
 		if(origin == RC && RCmode == MODE_ACRO){
 			return 1;
